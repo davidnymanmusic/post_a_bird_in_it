@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>All Birds</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>All Birds</h1>
+
+  <% birds.forEach((bird) => { %>
+    <h2><%= bird.title %></h2>
+    <p class="description">
+      <%= bird.description %>
+    </p>
+    <% }) %>
+
+      <a href="/birds/new">New Bird</a>
+</body>
+
+</html>
