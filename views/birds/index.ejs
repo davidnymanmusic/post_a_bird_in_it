@@ -8,16 +8,22 @@
 </head>
 
 <body>
-  <h1>All Birds</h1>
 
-  <% birds.forEach((bird) => { %>
-    <h2><%= bird.title %></h2>
-    <p class="description">
-      <%= bird.description %>
-    </p>
-    <% }) %>
+  <div class="index">
 
-      <a href="/birds/new">New Bird</a>
+
+    <h1>All Birds</h1>
+
+    <% birds.forEach((bird) => { %>
+      <h2><%= bird.title %></h2>
+
+      <p class="description"><%= bird.description %></p>
+      
+      <% }) %>
+
+  </div>
+
+  <a href="/birds/new">New Bird</a>
 </body>
 
 </html>

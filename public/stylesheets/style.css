@@ -25,6 +25,8 @@ body {
 
 .description {
   font-size: 18px;
+  color: rgb(255, 255, 255);
+
 }
 
 h1 {
@@ -42,7 +44,7 @@ a {
 }
 
 h2 {
-  text-decoration: underline;
+  border-bottom: 1px solid black;
 }
 
 img {
@@ -73,4 +75,11 @@ textarea {
   height: 120px;
   border: 0px solid black;
   font-size: 1.2em;
+}
+
+.index {
+  text-align: left;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
 }

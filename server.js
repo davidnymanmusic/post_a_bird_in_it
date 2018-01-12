@@ -4,7 +4,7 @@ const PORT = 8000;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
@@ -17,9 +17,22 @@ app.set('view engine', 'ejs');
 
 app.get('/birds/new', (req, res) => {
   res.render('birds/new', {
-    title: 'make a new bird'
+    title: 'post a new bird',
   });
 })
+
+app.get('/', (req, res) => {
+  knex('birds').then((rows) => {
+    res.format({
+      'application/json': () => res.json(rows),
+      'text/html': () => res.render('site/index', {
+        birds: rows,
+        title: "Birdy",
+        description: "cool place to post a bird" }),
+      'default': () => res.sendStatus(406)
+    })
+});
+});
 
 
 /*
@@ -29,7 +42,9 @@ app.get('/birds', (req, res) => {
   knex('birds').then((rows) => {
     res.format({
       'application/json': () => res.json(rows),
-      'text/html': () => res.render('birds/index', { birds: rows }),
+      'text/html': () => res.render('birds/index', { birds: rows,
+      title: "Birdy",
+    description: "cool place to post a bird"  }),
       'default': () => res.sendStatus(406)
     });
   });
@@ -50,7 +65,14 @@ app.post('/birds', (req, res) => {
   returning('*').then((rows) => {
     const bird = rows[0];
 
-    res.json(bird);
+    res.format({
+      'application/json': () => res.json(rows),
+      'text/html': () => res.render('site/index', {
+        birds: rows,
+        title: "Birdy",
+        description: "cool place to post a bird"  }),
+      'default': () => res.sendStatus(406)
+    });
   });
 });
 
